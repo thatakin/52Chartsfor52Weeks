@@ -11,8 +11,9 @@ regular = load_font("https://github.com/google/fonts/blob/main/ofl/mukta/Mukta-R
 thin = load_font("https://github.com/google/fonts/blob/main/ofl/mukta/Mukta-Light.ttf?raw=true")
 
 # --- Data ---
-data = "/Users/akke/Development/Random Projects/52Chartsfor52Weeks/Week 3/population_tr.csv"
-books = '/Users/akke/Development/Random Projects/52Chartsfor52Weeks/Week 3/books.csv'
+data = "https://github.com/thatakin/52Chartsfor52Weeks/blob/main/Week%203/population_tr.csv"
+books = 'https://github.com/thatakin/52Chartsfor52Weeks/blob/main/Week%203/books.csv'
+
 df_provinces = pd.read_csv(data)
 df_books = pd.read_csv(books)
 
