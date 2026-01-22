@@ -29,9 +29,8 @@ thin = load_font("https://github.com/google/fonts/blob/main/ofl/mukta/Mukta-Ligh
 cm = 1 / 2.54
 fig, axs = plt.subplots(figsize=(22 * cm, 23 * cm), facecolor='none', ncols=3, nrows=3)
 fig.text(0,1, "Costumer Confidence Index", font=bold, size=25)
-fig.text(0.01,0.95, "CCI standardised confidence indicator providing an indication of\nfuture developments of households’ consumption and saving.", font=thin, size=15)
-fig.subplots_adjust(top=0.8)
-plt.tight_layout(pad=0.4, w_pad=0.5, h_pad=1.0)
+fig.text(0,0.94, "CCI standardised confidence indicator providing an indication of\nfuture developments of households’ consumption and saving.", font=thin, size=15)
+fig.subplots_adjust(top=0.90, left=0.05, right=0.95, bottom=0.05, wspace=0.3, hspace=0.4)
 
 selected_countries = ["Australia", "Denmark", "China", "Germany", "South Africa", "Türkiye", "India", "Costa Rica", "OECD"]
 
@@ -52,7 +51,7 @@ for country, ax in zip(df_adjusted["Country"].unique(), axs.flat):
     ax.grid(axis="y") #Show grid lines from y axis
     ax.text(pd.Timestamp("2024-01-01"), 105, country) # Add country names to the corner
 
-plt.savefig('week2-OECD_CCI.svg', transparent=True, dpi=300)
+plt.savefig('week2-OECD_CCI.svg', transparent=True, dpi=300,bbox_inches='tight')
 plt.show()
 
 
