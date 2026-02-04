@@ -13,6 +13,7 @@ df = pd.read_csv(url)
 # Using Pypalettes to handle the colours
 cmap = load_cmap("Classic_Green_Orange_12")
 
+# Set specific colours for each country
 country_colours = {
     "Nauru" : cmap.colors[0],
     "Palau" : cmap.colors[1],
@@ -45,7 +46,7 @@ cm = 1 / 2.54
 fig, ax = plt.subplots(figsize=(22 * cm, 23 * cm), facecolor='none')
 # Adjusting the plot size to accommodate the title
 fig.subplots_adjust(top=0.8)
-
+# Plotting multiple line charts with a loop
 for country in mel['Country Name'].unique():
     country_data = mel[mel['Country Name'] == country]
     ax.plot(country_data['Year'], country_data['GNI'], 
@@ -55,11 +56,11 @@ for country in mel['Country Name'].unique():
 ax.grid(visible=False)
 ax.spines[:].set_visible(False)
 plt.gcf().axes[0].yaxis.get_major_formatter().set_scientific(False) #Do not use scientific notation
-plt.yticks([2000,4000,6000,8000,10000,20000,25000])
+plt.yticks([2000,4000,6000,8000,10000,20000,25000],["2K","4K","6K",'8K','10K','20K','25K'])
 plt.xticks([2020,2021,2022,2023,2024])
 
-# Labels
-
+# -- Data Labels --
+# Adding an offset for certain countries, so the labels aren't on top of each other
 label_offsets = {
     'Vanuatu': 500,
     'Tonga': 750, 
@@ -67,7 +68,7 @@ label_offsets = {
     'Tuvalu': 650,
     'Marshall Islands' : -450
 }
-
+# Loop to add country names at the end of each line
 for i, country in enumerate(mel['Country Name'].unique()):
     country_data = mel[mel['Country Name'] == country].dropna(subset=['GNI']).reset_index(drop=True)
     
@@ -77,7 +78,9 @@ for i, country in enumerate(mel['Country Name'].unique()):
         offset = label_offsets.get(country, 15)
         ax.text(x_position, y_position + offset, country,
                 va='center', ha='left', fontsize=20,
-                fontproperties=regular, color=country_colours[country])
+                fontproperties=bold, color=country_colours[country])
+        
+# Add USD to the top of the Y axis        
 y_max = ax.get_ylim()[1]
 x_min = ax.get_xlim()[0]
 ax.text(x_min, y_max * 1.02, "USD",
