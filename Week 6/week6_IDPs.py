@@ -13,8 +13,8 @@ regular = load_font("https://github.com/google/fonts/blob/main/ofl/mukta/Mukta-R
 thin = load_font("https://github.com/google/fonts/blob/main/ofl/mukta/Mukta-Light.ttf?raw=true")
 
 # --- Data Frame and Handling ---
-url = ""
-df = pd.read_excel("/Users/akke/Development/RandomProjects/52Chartsfor52Weeks/Week 6/IDMC_disaster displacement 2019-2024.xlsx")
+url = "https://github.com/thatakin/52Chartsfor52Weeks/blob/main/Week%206/IDMC_disaster%20displacement%202019-2024.xlsx?raw=true"
+df = pd.read_excel(url, engine='openpyxl')
 df_yearly = df.groupby('Year')['Disaster Internal Displacements'].sum().reset_index()
 
 # -- Plot --
